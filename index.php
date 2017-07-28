@@ -4,12 +4,13 @@
 
     try
     {
-        $file = new File();
-        $result = $file->readLinesFile('test');
+        $file = new File('test');
+        $result_char = $file->readCharFile(2, 3);
+        $result_line = $file->readLineFile(2);
     }
     catch (Exception $e)
     {
-        $result = $e->getMessage();
+        $error = $e->getMessage();
     }
 
     require_once 'templates/index.php';

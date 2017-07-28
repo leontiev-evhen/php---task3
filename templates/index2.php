@@ -1,5 +1,5 @@
 <DOCTYPE html>
-<html lang="en">
+    <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,30 +20,30 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container mt-50">
-            <?php if (isset($error))
-            { ?>
+    <div class="container mt-50">
+        <?php if (isset($error))
+        { ?>
 
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <?php echo $error;?>
-
-                    </div>
-                </div>
-
-            <?php } ?>
             <div class="row">
-                <div class="col-md-6">Line: <?php echo $result_line;?></div>
-                <div class="col-md-6">Char: <?php echo $result_char;?></div>
+                <div class="col-md-12">
+
+                    <?php echo $error;?>
+
+                </div>
             </div>
 
+        <?php } ?>
+        <div class="row">
+            <div class="col-md-12"><?php echo $result;?></div>
         </div>
-         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-         <!-- Include all compiled plugins (below), or include individual files as needed -->
-         <script src="<?php echo PATH;?>js/bootstrap.min.js"></script>
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<?php echo PATH;?>js/bootstrap.min.js"></script>
 
     </body>
-</html>
+    </html>
+
 
