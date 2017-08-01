@@ -26,28 +26,15 @@ class File
         }
     }
 
-    /**
-     * get content file
-     *
-     * @return string
-     * */
-    public function readLinesFile ()
-    {
-        foreach($this->file as $line)
-        {
-            $arrayLines[] = $line;
-        }
-        return implode('<br>', $arrayLines);
-    }
 
     /**
      * get file line’s
      * @param int $lineNumber
      * @return string
      * */
-    public function readLineFile ($lineNumber)
+    public function readLineFile ($lineNumber = null)
     {
-        if ($this->checkNumber($lineNumber))
+        if (!empty($lineNumber) && $this->checkNumber($lineNumber))
         {
             $searchLine = false;
             $lenght = count($this->file);
@@ -69,6 +56,14 @@ class File
                 throw new Exception( 'Line not found' );
             }
         }
+        else
+        {
+            foreach($this->file as $line)
+            {
+                $arrayLines[] = $line;
+            }
+            return implode('<br>', $arrayLines);
+        }
     }
 
     /**
@@ -77,9 +72,9 @@ class File
      * @param int $charNumber
      * @return string
      * */
-    public function readCharFile ($lineNumber, $charNumber)
+    public function readCharFile ($lineNumber = null, $charNumber = null)
     {
-        if ($this->checkNumber($charNumber))
+        if (!empty($charNumber) && $this->checkNumber($charNumber))
         {
             $line = $this->readLineFile($lineNumber);
             if (isset($line[$charNumber - 1]))
@@ -90,6 +85,17 @@ class File
             {
                 throw new Exception('Char not found');
             }
+        }
+        else
+        {
+            $arrayChars = '';
+            $lines = $this->readLineFile();
+            $lString = strlen($lines);
+            for ($i = 0; $i < $lString; $i++)
+            {
+                $arrayChars .= $lines[$i];
+            }
+            return $arrayChars;
         }
     }
 
@@ -113,7 +119,7 @@ class File
 
             if(file_put_contents($content, $fileContent))
             {
-                return $this->readLinesFile($file);
+                return $this->readCharFile();
             }
             else
             {
