@@ -32,13 +32,13 @@ class File
      * @param int $lineNumber
      * @return string
      * */
-    public function readLineFile ($lineNumber = null)
+    public function readLineFile ($lineNumber)
     {
-        if (!empty($lineNumber) && $this->checkNumber($lineNumber))
+        if ($this->checkNumber($lineNumber))
         {
             $searchLine = false;
             $lenght = count($this->file);
-            for ($i = 1; $i <= $lenght; $i++)
+            for ($i = 0; $i <= $lenght; $i++)
             {
                 if ($lineNumber == $i)
                 {
@@ -53,16 +53,8 @@ class File
             }
             else
             {
-                throw new Exception( 'Line not found' );
+                return false;
             }
-        }
-        else
-        {
-            foreach($this->file as $line)
-            {
-                $arrayLines[] = $line;
-            }
-            return implode('<br>', $arrayLines);
         }
     }
 
@@ -74,28 +66,19 @@ class File
      * */
     public function readCharFile ($lineNumber = null, $charNumber = null)
     {
-        if (!empty($charNumber) && $this->checkNumber($charNumber))
+        if ($this->checkNumber($charNumber))
         {
             $line = $this->readLineFile($lineNumber);
+
             if (isset($line[$charNumber - 1]))
             {
                 return $line[$charNumber - 1];
             }
             else
             {
-                throw new Exception('Char not found');
+                return false;
             }
-        }
-        else
-        {
-            $arrayChars = '';
-            $lines = $this->readLineFile();
-            $lString = strlen($lines);
-            for ($i = 0; $i < $lString; $i++)
-            {
-                $arrayChars .= $lines[$i];
-            }
-            return $arrayChars;
+
         }
     }
 
@@ -119,7 +102,28 @@ class File
 
             if(file_put_contents($content, $fileContent))
             {
-                return $this->readCharFile();
+
+                $i = 1;
+                $result = '';
+
+               /* while ($this->readLineFile($i))
+                {
+                    $result .= $this->readLineFile($i);
+                    $i++;
+                }*/
+
+                $lenght = count($this->file);
+                for ($i = 1; $i <= $lenght; $i++)
+                {
+                    $line = strlen($this->readLineFile($i));
+
+                    for ($y = 1; $y <= $line; $y++)
+                    {
+                        $result .= $this->readCharFile($i, $y);
+                    }
+                }
+
+                return $result;
             }
             else
             {
