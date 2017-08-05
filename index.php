@@ -7,12 +7,10 @@
     try
     {
        $file = new File('test');
-       // $result_char = $file->readCharFile(2, 3);
-       // $result_line = $file->readLineFile(2);
-       
-       $file2 = new Main($file);
-       $result_line = $file2->getLinesFile();
-       $result_char = $file2->getCharsFile();
+
+       $main = new Main($file);
+       $result_line = $main->getLinesFile();
+       $result_char = $main->getCharsFile();
     }
     catch (Exception $e)
     {

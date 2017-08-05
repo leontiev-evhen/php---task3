@@ -3,39 +3,40 @@
 class Main
 {
 
-private $file;
+    private $file;
 
-public function __construct (File $obj)
-{
-    $this->file = $obj;
-}
-
- public function getLinesFile () 
- {
-    $i = 0;
-
-    while ($this->file->readLineFile($i))
+    public function __construct (File $obj)
     {
-        $result .= $this->file->readLineFile($i);
-        $i++;
+        $this->file = $obj;
     }
-    return $result;
-}
 
-public function getCharsFile ()
-{
-  
-    $lenght = count($this->file);
-    for ($i = 1; $i <= $lenght; $i++)
+     public function getLinesFile ()
+     {
+         $i = 1;
+         $result = '';
+         while ($this->file->readLineFile($i))
+         {
+             $result .= $this->file->readLineFile($i);
+             $i++;
+         }
+
+        return $result;
+    }
+
+    public function getCharsFile ()
     {
-        $line = strlen($this->file->readLineFile($i));
-
-        for ($y = 1; $y <= $line; $y++)
+        $result = '';
+        $lenght = count($this->file->getFile());
+        for ($i = 1; $i <= $lenght; $i++)
         {
-            $result .= $this->file->readCharFile($i, $y);
-        }
-   } 
-   return $result;
-}
+            $line = strlen($this->file->readLineFile($i));
+
+            for ($y = 1; $y <= $line; $y++)
+            {
+                $result .= $this->file->readCharFile($i, $y);
+            }
+       }
+       return $result;
+    }
 }
 ?>

@@ -26,6 +26,14 @@ class File
         }
     }
 
+    /**
+     * @return string
+     * */
+    public function getFile ()
+    {
+        return $this->file;
+    }
+
 
     /**
      * get file line’s
@@ -102,28 +110,7 @@ class File
 
             if(file_put_contents($content, $fileContent))
             {
-
-                $i = 1;
-                $result = '';
-
-               /* while ($this->readLineFile($i))
-                {
-                    $result .= $this->readLineFile($i);
-                    $i++;
-                }*/
-
-                $lenght = count($this->file);
-                for ($i = 1; $i <= $lenght; $i++)
-                {
-                    $line = strlen($this->readLineFile($i));
-
-                    for ($y = 1; $y <= $line; $y++)
-                    {
-                        $result .= $this->readCharFile($i, $y);
-                    }
-                }
-
-                return $result;
+                return $content;
             }
             else
             {

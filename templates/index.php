@@ -34,8 +34,13 @@
 
             <?php } ?>
             <div class="row">
-                <div class="col-md-6">Line: <?php echo $result_line;?></div>
-                <div class="col-md-6">Char: <?php echo $result_char;?></div>
+                <div class="col-md-6">
+                    <h3>Line</h3>
+                    <?php echo $result_line;?>
+                </div>
+                <div class="col-md-6">
+                    <h3>Char</h3>
+                    <?php echo $result_char;?></div>
             </div>
 
         </div>
